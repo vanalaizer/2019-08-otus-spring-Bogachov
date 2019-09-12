@@ -11,14 +11,6 @@ public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("context.xml");
         QuestionUI questionUI = classPathXmlApplicationContext.getBean(QuestionUI.class);
-
-        while (questionUI.writeNextQuestion()!=null) {
-            questionUI.readAnswer();
-            if (questionUI.compareQuestionAnswer()) {
-                System.out.println("ok");
-            } else {
-                System.out.println("no");
-            }
-        }
+        questionUI.letsGo();
     }
 }

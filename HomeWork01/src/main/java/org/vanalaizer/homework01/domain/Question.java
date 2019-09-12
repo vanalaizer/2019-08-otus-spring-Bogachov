@@ -1,8 +1,8 @@
 package org.vanalaizer.homework01.domain;
 
 public class Question {
-    private String questionText;
-    private String questionAnswer;
+    private final String questionText;
+    private final String questionAnswer;
 
     public Question(String questionText, String questionAnswer) {
         this.questionText = questionText;
@@ -13,15 +13,8 @@ public class Question {
         return questionText;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
-
     public String getQuestionAnswer() {
         return questionAnswer;
     }
 
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
-    }
 }

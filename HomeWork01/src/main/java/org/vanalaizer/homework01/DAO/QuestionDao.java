@@ -4,5 +4,4 @@ import org.vanalaizer.homework01.domain.Question;
 
 public interface QuestionDao {
     Question readQuestion();
-    Question readFirst();
 }

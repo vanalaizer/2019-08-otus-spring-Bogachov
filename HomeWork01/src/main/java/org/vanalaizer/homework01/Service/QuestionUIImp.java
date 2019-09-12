@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 public class QuestionUIImp implements QuestionUI {
 
-    private QuestionDao questionDao;
+    private final QuestionDao questionDao;
     private  Question question;
     private  String answer;
 
@@ -17,13 +17,9 @@ public class QuestionUIImp implements QuestionUI {
         this.questionDao = questionDao;
     }
 
-    public Question getCurrentQuestion() {
-        return question;
-    }
-
     public Question writeNextQuestion() {
         question = questionDao.readQuestion();
-        if (question!=null) System.out.println(question.getQuestionText());
+        if (question!=null) System.out.print(question.getQuestionText() + ": ");
         return question;
     }
 
@@ -38,5 +34,17 @@ public class QuestionUIImp implements QuestionUI {
 
     public boolean compareQuestionAnswer() {
         return answer.equalsIgnoreCase(question.getQuestionAnswer());
+    }
+
+    public void letsGo() {
+        while (writeNextQuestion() != null) {
+            readAnswer();
+            if (compareQuestionAnswer()) {
+                System.out.println("this correct.");
+            } else {
+                System.out.println("no, incorrect answer.");
+            }
+
+        }
     }
 }

@@ -14,7 +14,7 @@ import static org.apache.commons.csv.CSVFormat.*;
 
 public class QuestionDaoImp implements QuestionDao{
 
-    private List<CSVRecord> records;
+    private final List<CSVRecord> records;
     private int index;
 
     public QuestionDaoImp() throws IOException {
@@ -22,7 +22,7 @@ public class QuestionDaoImp implements QuestionDao{
         InputStream inputStream = classLoader.getResourceAsStream("csv/questions.csv");
         if (inputStream!=null) {
             records = CSVParser.parse(inputStream, Charset.forName("UTF-8"), CSVFormat.RFC4180).getRecords();
-        } else throw new IOException("нет файла вопросов и ответов");
+        } else throw new IOException("ошибка чтения файла вопросов и ответов");
         index = 0;
     }
 
@@ -35,10 +35,5 @@ public class QuestionDaoImp implements QuestionDao{
         }
         index++;
         return question;
-    }
-
-    public Question readFirst() {
-        index = 0;
-        return readQuestion();
     }
 }
